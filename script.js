@@ -1,7 +1,7 @@
 
 //Declaração de variáveis globais
 const container = document.getElementById('container');
-
+let turno = 1;
 
 //Declaração de elementos HTML 1- createElements  2- classlist 3- append
 for (let i = 0; i < 7; i++) {
@@ -19,12 +19,24 @@ colunas.forEach(coluna => {
     }
 })
 
+const criarDisco = () =>{
+    const disco = document.createElement('div');
+    disco.classList.add('disco');
+}
+
 //Declaração de Funções
     //Outras funções
 
 
     //Verificação de Turno
 
+const turno = () =>{
+    if (turno === 1){
+        disco.classList.add('preto');
+    }else if (turno === 2){
+        disco.classList.add('vermelho');
+    }
+} 
 
     //Função do Handler
     colunas.forEach((item) => {
