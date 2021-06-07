@@ -1,7 +1,7 @@
 
 //Declaração de variáveis globais
 const container = document.getElementById('container');
-
+let turno = 1;
 
 //Declaração de elementos HTML 1- createElements  2- classlist 3- append
 for (let i = 0; i < 7; i++) {
@@ -29,11 +29,11 @@ const criarDisco = () =>{
 
 
     //Verificação de Turno
-let turno = 1
+
 const turno = () =>{
-    if (turno = 1){
+    if (turno === 1){
         disco.classList.add('preto');
-    }else if{
+    }else if (turno === 2){
         disco.classList.add('vermelho');
     }
 } 
