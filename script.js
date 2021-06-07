@@ -1,9 +1,13 @@
 
 //Declaração de variáveis globais
-
+const container = document.getElementById('container');
 
 //Declaração de elementos HTML 1- createElements  2- classlist 3- append
-
+for (let i = 0; i < 7; i++) {
+    const coluna = document.createElement('div');
+    coluna.classList.add('colunas');
+    container.appendChild(coluna);
+}
 
 //Declaração de Funções
     //Outras funções
