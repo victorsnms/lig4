@@ -2,6 +2,7 @@
 //Declaração de variáveis globais
 const container = document.getElementById('container');
 let turno = 1;
+let tabuleiro = [[],[],[],[],[],[],[]];
 
 //Declaração de elementos HTML 1- createElements  2- classlist 3- append
 for (let i = 0; i < 7; i++) {
@@ -22,6 +23,14 @@ colunas.forEach(coluna => {
 const criarDisco = () =>{
     const disco = document.createElement('div');
     disco.classList.add('disco');
+    if (turno === 1){
+        disco.classList.add('preto');
+        disco.dataset.cor = 'preto'
+    }else if (turno === 2){
+        disco.classList.add('vermelho');
+        disco.dataset.cor = 'vermelho'
+    }
+    return disco
 }
 
 //Declaração de Funções
@@ -30,24 +39,59 @@ const criarDisco = () =>{
 
     //Verificação de Turno
 
-const turno = () =>{
-    if (turno === 1){
-        disco.classList.add('preto');
-    }else if (turno === 2){
-        disco.classList.add('vermelho');
-    }
-} 
+
 
     //Função do Handler
     colunas.forEach((item) => {
         item.addEventListener('click', setColuna)
     })
 
+
+    /*
+
+    colunas = array de COLUNA
+    COLUNA tem 6 quadrado
+
+    o append do disco tem que ser ao quadrado (primeiro quadrado sem filho)
+    */
+
+
+    
+
+
     function setColuna(e) {
+        //criar condição de verificação de jogada possível
+
+
+        const discoCriado = criarDisco();  
+        
         const colunaEscolhida = e.currentTarget;
     
         console.log(colunaEscolhida);
+
+        const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
+        console.log(quadrados);
+
+        let quadradoEscolhido
         
+        for(let i = 0; i < quadrados.length; i++){
+            if(quadrados[i].childElementCount === 0){
+                quadradoEscolhido = quadrados[i];
+                break;
+            }
+        }
+
+        quadradoEscolhido.appendChild(discoCriado);
+
+        if (turno === 1){
+            turno = 2;
+        }
+        else if (turno === 2){
+            turno = 1
+        }
+        verificarTabuleiro();
+        //condições de vitória
+
     }
 
 
@@ -56,7 +100,31 @@ const turno = () =>{
 
 
     //Atualizar array de arrays
-
+    const verificarTabuleiro = () => {
+        let newArray = [[],[],[],[],[],[],[]];       
+            //percorrer colunas (7) da (do container) esquerda para direita (cada coluna é um array de NEWARRAY)
+                //percorrer quadrados da coluna(6) aplicando a condição e dando push no NEWARRAY.
+        
+        for(let i = 0; i < colunas.length;i++){
+            let quadrados = colunas[i].querySelectorAll('.quadrados')
+            for(j = 0; j < quadrados.length;j++){
+                let discoPosicao = quadrados[j].firstElementChild
+                if (discoPosicao === null){
+                    break;
+                }
+                if(discoPosicao.dataset.cor === 'preto'){
+                    newArray[i].push(1)
+                }
+                if(discoPosicao.dataset.cor === 'vermelho'){
+                    newArray[i].push(2)
+                    
+                }
+            }
+        }         
+        
+        tabuleiro = newArray;
+        console.log(tabuleiro)
+    }
 
 
     //Verificações de Vitória
