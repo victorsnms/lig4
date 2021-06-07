@@ -24,3 +24,17 @@ html, body, header, div, main, section{
     height: 40px;
     border: 1px solid #000;
 }
+
+.disco {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.preto {
+    background-color: #000;
+}
+
+.vermelho {
+    background-color: #ff0000;
+}
