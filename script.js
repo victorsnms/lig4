@@ -27,7 +27,16 @@ colunas.forEach(coluna => {
 
 
     //Função do Handler
+    colunas.forEach((item) => {
+        item.addEventListener('click', setColuna)
+    })
 
+    function setColuna(e) {
+        const colunaEscolhida = e.currentTarget;
+    
+        console.log(colunaEscolhida);
+        
+    }
 
 
     //Verificação de permissão de jogada
