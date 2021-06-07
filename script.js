@@ -19,6 +19,11 @@ colunas.forEach(coluna => {
     }
 })
 
+const criarDisco = () =>{
+    const disco = document.createElement('div');
+    disco.classList.add('disco');
+}
+
 //Declaração de Funções
     //Outras funções
 
