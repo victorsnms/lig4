@@ -29,7 +29,14 @@ const criarDisco = () =>{
 
 
     //Verificação de Turno
-
+let turno = 1
+const turno = () =>{
+    if (turno = 1){
+        disco.classList.add('preto');
+    }else if{
+        disco.classList.add('vermelho');
+    }
+} 
 
     //Função do Handler
 
