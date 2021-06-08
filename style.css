@@ -38,3 +38,11 @@ html, body, header, div, main, section{
 .vermelho {
     background-color: #ff0000;
 }
+
+.cheio{
+    position: absolute;
+    background-color: rgb(172, 199, 190);
+    top: 25%;
+    border-radius: 10px;
+    padding: 10px;
+}

@@ -35,7 +35,14 @@ const criarDisco = () =>{
 
 //Declaração de Funções
     //Outras funções
-
+    const colunaCheia = () =>{
+        const cheio = document.createElement('div');
+        cheio.classList.add('cheio');
+        cheio.innerText = 'Coluna Cheia!';
+        document.body.insertBefore(cheio, container);
+        const cheia = document.getElementsByClassName('cheio')
+        setTimeout(document.body.removeChild(cheia),2000);
+    }
 
     //Verificação de Turno
 
@@ -69,7 +76,7 @@ const criarDisco = () =>{
         let ultimoQuadrado = quadrados[quadrados.length - 1];
         
         if (ultimoQuadrado.childElementCount > 0) {
-            console.log('Coluna cheia');
+            colunaCheia();
             return
         }
 
