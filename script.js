@@ -35,6 +35,9 @@ const criarDisco = () => {
 }
 
 //Declaração de Funções
+
+//Função de Verificação de Vitória
+
     //Outras funções
     const colunaCheia = () =>{
         const cheio = document.createElement('div');
