@@ -36,6 +36,8 @@ const criarDisco = () => {
 //Declaração de Funções
 //Outras funções
 
+//Função de revelação de vitória
+
 
 //Verificação de Turno
 
@@ -46,25 +48,10 @@ colunas.forEach((item) => {
     item.addEventListener('click', setColuna)
 })
 
-
-/*
-
-colunas = array de COLUNA
-COLUNA tem 6 quadrado
-
-o append do disco tem que ser ao quadrado (primeiro quadrado sem filho)
-*/
-
-
-
-
-
 function setColuna(e) {
     const colunaEscolhida = e.currentTarget;
 
     const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
-
-    //criar condição de verificação de jogada possível
 
     let ultimoQuadrado = quadrados[quadrados.length - 1];
 
@@ -93,23 +80,15 @@ function setColuna(e) {
         turno = 1
     }
     verificarTabuleiro();
-    //condições de vitória
     verificarVertical();
     verificarDiagonal();
     verificarHorizontal();
     verificarEmpate();
 }
 
-
-//Verificação de permissão de jogada
-
-
-
 //Atualizar array de arrays
 const verificarTabuleiro = () => {
     let newArray = [[], [], [], [], [], [], []];
-    //percorrer colunas (7) da (do container) esquerda para direita (cada coluna é um array de NEWARRAY)
-    //percorrer quadrados da coluna(6) aplicando a condição e dando push no NEWARRAY.
 
     for (let i = 0; i < colunas.length; i++) {
         let quadrados = colunas[i].querySelectorAll('.quadrados')
@@ -129,12 +108,11 @@ const verificarTabuleiro = () => {
     }
 
     tabuleiro = newArray;
-    console.log(tabuleiro)
 }
 
 
 //Verificações de Vitória
-//Verificação Horizontal
+    //Verificação Horizontal
 
 const verificarHorizontal = () => {
 
@@ -152,10 +130,11 @@ const verificarHorizontal = () => {
             if (discoA === discoB && discoB === discoC && discoC === discoD) {
                 if (discoA === 1) {
                     console.log('preto ganhou horizontal');
+                    return 'preto'
 
                 } else if (discoA === 2) {
                     console.log('vermelho ganhou horizontal');
-
+                    return 'vermelho'
                 }
             }
         }
@@ -163,7 +142,7 @@ const verificarHorizontal = () => {
 }
 
 
-//Verificação Vertical
+    //Verificação Vertical
 const verificarVertical = () => {
     for (let i = 0; i < tabuleiro.length; i++) {
         if (tabuleiro[i].length > 3) {
@@ -176,10 +155,10 @@ const verificarVertical = () => {
                 if (discoA === discoB && discoB === discoC && discoC === discoD) {
                     if (discoA === 1) {
                         console.log('preto ganhou');
-                        // função de vitoria do preto
+                        return 'preto'
                     } else if (discoA === 2) {
                         console.log('vermelho ganhou');
-                        // função de vitoria do vermelho
+                        return 'vermelho'
                     }
                 }
             }
@@ -187,18 +166,9 @@ const verificarVertical = () => {
     }
 }
 
-
-        //dados [i][j]
-        //primeiro FOR percorrer até [0,0] [3,0] i vai de 0 a 3
-
-
         //Verificação Diagonal
         const verificarDiagonal = () => {
-
-            //percorrendo colunas para cima /\
             for(let j = 0; j < 3; j++){
-
-            //percorrendo colunas para a direita >>
                 for(let i = 0; i < 4; i++){
 
                 let discoA = tabuleiro[i][j];
@@ -209,19 +179,17 @@ const verificarVertical = () => {
                     if (discoA === discoB && discoB === discoC && discoC === discoD) {
                         if (discoA === 1) {
                             console.log('preto ganhou (diagonal)');
-                            // função de vitoria do preto
+                            return 'preto'
                         } else if (discoA === 2) {
                             console.log('vermelho ganhou (diagonal)');
-                            // função de vitoria do vermelho
+                            return 'vermelho'
                         }
                     }
                 }
             }          
 
-            //percorrendo colunas para cima /\
             for(let j = 0; j < 3; j++){
 
-            //percorrendo colunas para a direita >>
                 for(let i = 6; i > 2; i--){
 
                 let discoA = tabuleiro[i][j];
@@ -232,10 +200,10 @@ const verificarVertical = () => {
                     if (discoA === discoB && discoB === discoC && discoC === discoD) {
                         if (discoA === 1) {
                             console.log('preto ganhou (diagonal)');
-                            // função de vitoria do preto
+                            return 'preto'
                         } else if (discoA === 2) {
                             console.log('vermelho ganhou (diagonal)');
-                            // função de vitoria do vermelho
+                            return 'vermelho'
                         }
                     }
                 }
@@ -258,63 +226,6 @@ const verificarEmpate = () => {
         console.log('resultado: Empate');
     }
 }
-
-
-
-
-          /*  
-            let discoA = tabuleiro[i][j];
-            let discoB = tabuleiro[i + 1][j + 1];
-            let discoC = tabuleiro[i + 2][j + 2];
-            let discoD = tabuleiro[i + 3][j + 3];
-
-                if (discoA === discoB && discoB === discoC && discoC === discoD) {
-                    if (discoA === 1) {
-                        console.log('preto ganhou (diagonal)');
-                        // função de vitoria do preto
-                    } else if (discoA === 2) {
-                        console.log('vermelho ganhou (diagonal)');
-                        // função de vitoria do vermelho
-                    }
-                }
-            }
-
-
-        }*/
-        /*
-        [0,0] [1,1] [2,2] [3,3]
-
-        // alterando o eixo vertical 1++
-        [0,1] [1,2] [2,3] [3,4]
-        [0,2] [1,3] [2,4] [3,5]
-
-        //alterando o eixo horizontal 1++
-        [1,0]
-        */
-        /*
-
-        coluna >>>>>>>
-        linha \/
-
-        array{
-            {1,2,1,1,1,2}
-            {1,2,1,1,1,2}
-            {1,2,1,1,1,2}
-            {1,2,1,1,1,2}
-            {1,2,1,1,1,2}
-            {1,2,1,1,1,2}
-            {1,2,1,1,1,2}
-        }
-        */
-
-
-
-
-
-
-
-//Declaração de Handlers
-
 
 /*
 
