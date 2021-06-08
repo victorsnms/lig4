@@ -96,6 +96,8 @@ function setColuna(e) {
     //condições de vitória
     verificarVertical();
     verificarDiagonal();
+    // virificarHorizontal();
+    verificarEmpate();
 }
 
 
@@ -213,6 +215,23 @@ const verificarVertical = () => {
                 }
             }
         }
+
+// verificação de empate 
+const verificarEmpate = () => {
+    let count = 0;
+
+    tabuleiro.forEach(coluna => {
+        if (coluna.length === 6) {
+            count++;
+        } else {
+            return;
+        }
+    });
+
+    if (count === 7) {
+        console.log('resultado: Empate');
+    }
+}
 
 
 
