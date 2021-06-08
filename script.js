@@ -60,17 +60,18 @@ const criarDisco = () =>{
 
 
     function setColuna(e) {
-        //criar condição de verificação de jogada possível
-
-
-        const discoCriado = criarDisco();  
-        
         const colunaEscolhida = e.currentTarget;
-    
-        console.log(colunaEscolhida);
 
         const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
-        console.log(quadrados);
+
+        //criar condição de verificação de jogada possível
+
+        let ultimoQuadrado = quadrados[quadrados.length - 1];
+        
+        if (ultimoQuadrado.childElementCount > 0) {
+            console.log('Coluna cheia');
+            return
+        }
 
         let quadradoEscolhido
         
@@ -80,6 +81,8 @@ const criarDisco = () =>{
                 break;
             }
         }
+
+        const discoCriado = criarDisco(); 
 
         quadradoEscolhido.appendChild(discoCriado);
 
