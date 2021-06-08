@@ -2,7 +2,7 @@
 //Declaração de variáveis globais
 const container = document.getElementById('container');
 let turno = 1;
-let tabuleiro = [[],[],[],[],[],[],[]];
+let tabuleiro = [[], [], [], [], [], [], []];
 
 //Declaração de elementos HTML 1- createElements  2- classlist 3- append
 for (let i = 0; i < 7; i++) {
@@ -20,13 +20,13 @@ colunas.forEach(coluna => {
     }
 })
 
-const criarDisco = () =>{
+const criarDisco = () => {
     const disco = document.createElement('div');
     disco.classList.add('disco');
-    if (turno === 1){
+    if (turno === 1) {
         disco.classList.add('preto');
         disco.dataset.cor = 'preto'
-    }else if (turno === 2){
+    } else if (turno === 2) {
         disco.classList.add('vermelho');
         disco.dataset.cor = 'vermelho'
     }
@@ -44,105 +44,126 @@ const criarDisco = () =>{
         setTimeout(document.body.removeChild(cheia),2000);
     }
 
-    //Verificação de Turno
+//Verificação de Turno
 
 
 
-    //Função do Handler
-    colunas.forEach((item) => {
-        item.addEventListener('click', setColuna)
-    })
+//Função do Handler
+colunas.forEach((item) => {
+    item.addEventListener('click', setColuna)
+})
 
 
-    /*
+/*
 
-    colunas = array de COLUNA
-    COLUNA tem 6 quadrado
+colunas = array de COLUNA
+COLUNA tem 6 quadrado
 
-    o append do disco tem que ser ao quadrado (primeiro quadrado sem filho)
-    */
-
-
-    
+o append do disco tem que ser ao quadrado (primeiro quadrado sem filho)
+*/
 
 
-    function setColuna(e) {
-        const colunaEscolhida = e.currentTarget;
 
-        const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
 
-        //criar condição de verificação de jogada possível
 
-        let ultimoQuadrado = quadrados[quadrados.length - 1];
-        
-        if (ultimoQuadrado.childElementCount > 0) {
-            colunaCheia();
-            return
+function setColuna(e) {
+    const colunaEscolhida = e.currentTarget;
+
+    const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
+
+    //criar condição de verificação de jogada possível
+
+    let ultimoQuadrado = quadrados[quadrados.length - 1];
+
+    if (ultimoQuadrado.childElementCount > 0) {
+        console.log('Coluna cheia');
+        return
+    }
+
+    let quadradoEscolhido
+
+    for (let i = 0; i < quadrados.length; i++) {
+        if (quadrados[i].childElementCount === 0) {
+            quadradoEscolhido = quadrados[i];
+            break;
         }
+    }
 
-        let quadradoEscolhido
-        
-        for(let i = 0; i < quadrados.length; i++){
-            if(quadrados[i].childElementCount === 0){
-                quadradoEscolhido = quadrados[i];
+    const discoCriado = criarDisco();
+
+    quadradoEscolhido.appendChild(discoCriado);
+
+    if (turno === 1) {
+        turno = 2;
+    }
+    else if (turno === 2) {
+        turno = 1
+    }
+    verificarTabuleiro();
+    //condições de vitória
+    verificarVertical();
+}
+
+
+//Verificação de permissão de jogada
+
+
+
+//Atualizar array de arrays
+const verificarTabuleiro = () => {
+    let newArray = [[], [], [], [], [], [], []];
+    //percorrer colunas (7) da (do container) esquerda para direita (cada coluna é um array de NEWARRAY)
+    //percorrer quadrados da coluna(6) aplicando a condição e dando push no NEWARRAY.
+
+    for (let i = 0; i < colunas.length; i++) {
+        let quadrados = colunas[i].querySelectorAll('.quadrados')
+        for (j = 0; j < quadrados.length; j++) {
+            let discoPosicao = quadrados[j].firstElementChild
+            if (discoPosicao === null) {
                 break;
             }
+            if (discoPosicao.dataset.cor === 'preto') {
+                newArray[i].push(1)
+            }
+            if (discoPosicao.dataset.cor === 'vermelho') {
+                newArray[i].push(2)
+
+            }
         }
-
-        const discoCriado = criarDisco(); 
-
-        quadradoEscolhido.appendChild(discoCriado);
-
-        if (turno === 1){
-            turno = 2;
-        }
-        else if (turno === 2){
-            turno = 1
-        }
-        verificarTabuleiro();
-        //condições de vitória
-
     }
 
+    tabuleiro = newArray;
+    console.log(tabuleiro)
+}
 
-    //Verificação de permissão de jogada
+
+//Verificações de Vitória
+//Verificação Horizontal
 
 
+//Verificação Vertical
+const verificarVertical = () => {
+    for (let i = 0; i < tabuleiro.length; i++) {
+        if (tabuleiro[i].length > 3) {
+            for (let j = 0; j < 3; j++) {
+                let discoA = tabuleiro[i][j];
+                let discoB = tabuleiro[i][j + 1];
+                let discoC = tabuleiro[i][j + 2];
+                let discoD = tabuleiro[i][j + 3];
 
-    //Atualizar array de arrays
-    const verificarTabuleiro = () => {
-        let newArray = [[],[],[],[],[],[],[]];       
-            //percorrer colunas (7) da (do container) esquerda para direita (cada coluna é um array de NEWARRAY)
-                //percorrer quadrados da coluna(6) aplicando a condição e dando push no NEWARRAY.
-        
-        for(let i = 0; i < colunas.length;i++){
-            let quadrados = colunas[i].querySelectorAll('.quadrados')
-            for(j = 0; j < quadrados.length;j++){
-                let discoPosicao = quadrados[j].firstElementChild
-                if (discoPosicao === null){
-                    break;
-                }
-                if(discoPosicao.dataset.cor === 'preto'){
-                    newArray[i].push(1)
-                }
-                if(discoPosicao.dataset.cor === 'vermelho'){
-                    newArray[i].push(2)
-                    
+                if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                    if (discoA === 1) {
+                        console.log('preto ganhou');
+                        // função de vitoria do preto
+                    } else if (discoA === 2) {
+                        console.log('vermelho ganhou');
+                        // função de vitoria do vermelho
+                    }
                 }
             }
-        }         
-        
-        tabuleiro = newArray;
-        console.log(tabuleiro)
+        }
     }
-
-
-    //Verificações de Vitória
-        //Verificação Horizontal
-
-        
-        //Verificação Vertical
-
+}
 
         //Verificação Diagonal
 
@@ -170,18 +191,18 @@ const criarDisco = () =>{
     </div>
 
     III - div de quadrados (6 quadrados) - Criar o tabuleiro (estrutura) html (divs menores) - deve ser criado no js
-    
+
     //quadrados appendados na coluna
 
     estilo de altura, largura e borda > para as divs menores
 
-    
+
     1 - Exiba um disco preto ou vermelho.
 
     Criar uma div de disco (em js)
 
     classe disco (altura, largura, border-radius), preto (background), vermelho (background)
-    
+
 
     HADLERS  DE CLICK
 
@@ -190,12 +211,12 @@ const criarDisco = () =>{
     Função {
         criar um disco (objeto html) > createElement
         adicionar um estilo de disco (classList.add) (previamente definido no css)
-        
+
         condição de turno{
             adicionar um estilo de cor (classList.add) (previamente definido no css)
             adicionar dataset relacionado a cor
         }
-        
+
 
         append do disco na coluna que foi clicada
 
@@ -221,7 +242,7 @@ const criarDisco = () =>{
 
 
     ex: 1 === preto         2 === vermelho
-    
+
 
     array{
         {1,2,1,1,1,2}
