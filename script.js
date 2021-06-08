@@ -96,7 +96,7 @@ function setColuna(e) {
     //condições de vitória
     verificarVertical();
     verificarDiagonal();
-    // virificarHorizontal();
+    verificarHorizontal();
     verificarEmpate();
 }
 
@@ -135,6 +135,32 @@ const verificarTabuleiro = () => {
 
 //Verificações de Vitória
 //Verificação Horizontal
+
+const verificarHorizontal = () => {
+
+    for (let j = 0; j < 6; j++) {
+
+
+        for (let i = 0; i < 4; i++) {
+
+
+            let discoA = tabuleiro[i][j];
+            let discoB = tabuleiro[i + 1][j];
+            let discoC = tabuleiro[i + 2][j];
+            let discoD = tabuleiro[i + 3][j];
+
+            if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                if (discoA === 1) {
+                    console.log('preto ganhou horizontal');
+
+                } else if (discoA === 2) {
+                    console.log('vermelho ganhou horizontal');
+
+                }
+            }
+        }
+    }
+}
 
 
 //Verificação Vertical
