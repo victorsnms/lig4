@@ -1,6 +1,7 @@
 
 //Declaração de variáveis globais
 const container = document.getElementById('container');
+const main = document.getElementsByTagName('main')[0];
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
 
@@ -39,9 +40,9 @@ const criarDisco = () => {
         const cheio = document.createElement('div');
         cheio.classList.add('cheio');
         cheio.innerText = 'Coluna Cheia!';
-        document.body.insertBefore(cheio, container);
+        main.insertBefore(cheio, container);
         const cheia = document.getElementsByClassName('cheio')[0];
-        setTimeout(()=>{document.body.removeChild(cheia)}, 2000);
+        setTimeout(()=>{main.removeChild(cheia)}, 2000);
     }
 
 //Verificação de Turno
@@ -53,25 +54,10 @@ colunas.forEach((item) => {
     item.addEventListener('click', setColuna)
 })
 
-
-/*
-
-colunas = array de COLUNA
-COLUNA tem 6 quadrado
-
-o append do disco tem que ser ao quadrado (primeiro quadrado sem filho)
-*/
-
-
-
-
-
 function setColuna(e) {
     const colunaEscolhida = e.currentTarget;
 
     const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
-
-    //criar condição de verificação de jogada possível
 
     let ultimoQuadrado = quadrados[quadrados.length - 1];
 
@@ -100,20 +86,15 @@ function setColuna(e) {
         turno = 1
     }
     verificarTabuleiro();
-    //condições de vitória
     verificarVertical();
+    verificarDiagonal();
+    verificarHorizontal();
+    verificarEmpate();
 }
-
-
-//Verificação de permissão de jogada
-
-
 
 //Atualizar array de arrays
 const verificarTabuleiro = () => {
     let newArray = [[], [], [], [], [], [], []];
-    //percorrer colunas (7) da (do container) esquerda para direita (cada coluna é um array de NEWARRAY)
-    //percorrer quadrados da coluna(6) aplicando a condição e dando push no NEWARRAY.
 
     for (let i = 0; i < colunas.length; i++) {
         let quadrados = colunas[i].querySelectorAll('.quadrados')
@@ -133,15 +114,41 @@ const verificarTabuleiro = () => {
     }
 
     tabuleiro = newArray;
-    console.log(tabuleiro)
 }
 
 
 //Verificações de Vitória
-//Verificação Horizontal
+    //Verificação Horizontal
+
+const verificarHorizontal = () => {
+
+    for (let j = 0; j < 6; j++) {
 
 
-//Verificação Vertical
+        for (let i = 0; i < 4; i++) {
+
+
+            let discoA = tabuleiro[i][j];
+            let discoB = tabuleiro[i + 1][j];
+            let discoC = tabuleiro[i + 2][j];
+            let discoD = tabuleiro[i + 3][j];
+
+            if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                if (discoA === 1) {
+                    console.log('preto ganhou horizontal');
+                    return 'preto'
+
+                } else if (discoA === 2) {
+                    console.log('vermelho ganhou horizontal');
+                    return 'vermelho'
+                }
+            }
+        }
+    }
+}
+
+
+    //Verificação Vertical
 const verificarVertical = () => {
     for (let i = 0; i < tabuleiro.length; i++) {
         if (tabuleiro[i].length > 3) {
@@ -154,10 +161,10 @@ const verificarVertical = () => {
                 if (discoA === discoB && discoB === discoC && discoC === discoD) {
                     if (discoA === 1) {
                         console.log('preto ganhou');
-                        // função de vitoria do preto
+                        return 'preto'
                     } else if (discoA === 2) {
                         console.log('vermelho ganhou');
-                        // função de vitoria do vermelho
+                        return 'vermelho'
                     }
                 }
             }
@@ -166,15 +173,65 @@ const verificarVertical = () => {
 }
 
         //Verificação Diagonal
+        const verificarDiagonal = () => {
+            for(let j = 0; j < 3; j++){
+                for(let i = 0; i < 4; i++){
 
+                let discoA = tabuleiro[i][j];
+                let discoB = tabuleiro[i + 1][j + 1];
+                let discoC = tabuleiro[i + 2][j + 2];
+                let discoD = tabuleiro[i + 3][j + 3];
 
+                    if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                        if (discoA === 1) {
+                            console.log('preto ganhou (diagonal)');
+                            return 'preto'
+                        } else if (discoA === 2) {
+                            console.log('vermelho ganhou (diagonal)');
+                            return 'vermelho'
+                        }
+                    }
+                }
+            }          
 
+            for(let j = 0; j < 3; j++){
 
+                for(let i = 6; i > 2; i--){
 
+                let discoA = tabuleiro[i][j];
+                let discoB = tabuleiro[i - 1][j + 1];
+                let discoC = tabuleiro[i - 2][j + 2];
+                let discoD = tabuleiro[i - 3][j + 3];
 
+                    if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                        if (discoA === 1) {
+                            console.log('preto ganhou (diagonal)');
+                            return 'preto'
+                        } else if (discoA === 2) {
+                            console.log('vermelho ganhou (diagonal)');
+                            return 'vermelho'
+                        }
+                    }
+                }
+            }
+        }
 
-//Declaração de Handlers
+// verificação de empate 
+const verificarEmpate = () => {
+    let count = 0;
 
+    tabuleiro.forEach(coluna => {
+        if (coluna.length === 6) {
+            count++;
+        } else {
+            return;
+        }
+    });
+
+    if (count === 7) {
+        console.log('resultado: Empate');
+    }
+}
 
 /*
 
