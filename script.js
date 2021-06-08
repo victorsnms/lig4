@@ -1,6 +1,7 @@
 
 //Declaração de variáveis globais
 const container = document.getElementById('container');
+const main = document.getElementsByTagName('main')[0];
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
 
@@ -34,10 +35,15 @@ const criarDisco = () => {
 }
 
 //Declaração de Funções
-//Outras funções
-
-//Função de revelação de vitória
-
+    //Outras funções
+    const colunaCheia = () =>{
+        const cheio = document.createElement('div');
+        cheio.classList.add('cheio');
+        cheio.innerText = 'Coluna Cheia!';
+        main.insertBefore(cheio, container);
+        const cheia = document.getElementsByClassName('cheio')[0];
+        setTimeout(()=>{main.removeChild(cheia)}, 2000);
+    }
 
 //Verificação de Turno
 
@@ -56,7 +62,7 @@ function setColuna(e) {
     let ultimoQuadrado = quadrados[quadrados.length - 1];
 
     if (ultimoQuadrado.childElementCount > 0) {
-        console.log('Coluna cheia');
+        colunaCheia();
         return
     }
 
