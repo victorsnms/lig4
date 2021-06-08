@@ -95,6 +95,7 @@ function setColuna(e) {
     verificarTabuleiro();
     //condições de vitória
     verificarVertical();
+    verificarDiagonal();
 }
 
 
@@ -158,7 +159,108 @@ const verificarVertical = () => {
     }
 }
 
+
+        //dados [i][j]
+        //primeiro FOR percorrer até [0,0] [3,0] i vai de 0 a 3
+
+
         //Verificação Diagonal
+        const verificarDiagonal = () => {
+
+            //percorrendo colunas para cima /\
+            for(let j = 0; j < 3; j++){
+
+            //percorrendo colunas para a direita >>
+                for(let i = 0; i < 4; i++){
+
+                let discoA = tabuleiro[i][j];
+                let discoB = tabuleiro[i + 1][j + 1];
+                let discoC = tabuleiro[i + 2][j + 2];
+                let discoD = tabuleiro[i + 3][j + 3];
+
+                    if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                        if (discoA === 1) {
+                            console.log('preto ganhou (diagonal)');
+                            // função de vitoria do preto
+                        } else if (discoA === 2) {
+                            console.log('vermelho ganhou (diagonal)');
+                            // função de vitoria do vermelho
+                        }
+                    }
+                }
+            }          
+
+            //percorrendo colunas para cima /\
+            for(let j = 0; j < 3; j++){
+
+            //percorrendo colunas para a direita >>
+                for(let i = 6; i > 2; i--){
+
+                let discoA = tabuleiro[i][j];
+                let discoB = tabuleiro[i - 1][j + 1];
+                let discoC = tabuleiro[i - 2][j + 2];
+                let discoD = tabuleiro[i - 3][j + 3];
+
+                    if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                        if (discoA === 1) {
+                            console.log('preto ganhou (diagonal)');
+                            // função de vitoria do preto
+                        } else if (discoA === 2) {
+                            console.log('vermelho ganhou (diagonal)');
+                            // função de vitoria do vermelho
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+          /*  
+            let discoA = tabuleiro[i][j];
+            let discoB = tabuleiro[i + 1][j + 1];
+            let discoC = tabuleiro[i + 2][j + 2];
+            let discoD = tabuleiro[i + 3][j + 3];
+
+                if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                    if (discoA === 1) {
+                        console.log('preto ganhou (diagonal)');
+                        // função de vitoria do preto
+                    } else if (discoA === 2) {
+                        console.log('vermelho ganhou (diagonal)');
+                        // função de vitoria do vermelho
+                    }
+                }
+            }
+
+
+        }*/
+        /*
+        [0,0] [1,1] [2,2] [3,3]
+
+        // alterando o eixo vertical 1++
+        [0,1] [1,2] [2,3] [3,4]
+        [0,2] [1,3] [2,4] [3,5]
+
+        //alterando o eixo horizontal 1++
+        [1,0]
+        */
+        /*
+
+        coluna >>>>>>>
+        linha \/
+
+        array{
+            {1,2,1,1,1,2}
+            {1,2,1,1,1,2}
+            {1,2,1,1,1,2}
+            {1,2,1,1,1,2}
+            {1,2,1,1,1,2}
+            {1,2,1,1,1,2}
+            {1,2,1,1,1,2}
+        }
+        */
 
 
 
