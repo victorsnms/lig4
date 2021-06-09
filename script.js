@@ -47,9 +47,10 @@ const colunaCheia = () => {
     const cheio = document.createElement('div');
     cheio.classList.add('cheio');
     cheio.innerText = 'Coluna Cheia!';
-    resultado.insertBefore(cheio, container);
+    // main.insertBefore(cheio, container);
+    resultado.appendChild(cheio);
     const cheia = document.getElementsByClassName('cheio')[0];
-    setTimeout(() => { resultado.removeChild(cheia) }, 1000);
+    setTimeout(() => { resultado.innerHTML = '' }, 1000);
 }
 
 const vitoriaSol = () => {
@@ -274,8 +275,7 @@ const verificarEmpate = () => {
     });
 
     if (count === 7) {
-        // eclipse();
-        console.log('resultado: Empate');
+        return 'empate'
     }
 }
 
@@ -318,7 +318,7 @@ const reset = () => {
 
     quadrados.forEach(quadrado => quadrado.innerHTML = '');
 
-    container.style.display = 'flex';
+    container.classList.remove('hidden')
 }
 
 btnReset.addEventListener('click', reset);
