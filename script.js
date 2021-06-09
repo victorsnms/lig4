@@ -61,7 +61,7 @@ const changeMusic = () =>{
     //parar musica de background
     backgroundMusic.pause();
     backgroundMusic.currentTime = 0;
-    victoryTheme.currentTime = 4.8;
+    victoryTheme.currentTime = 0;
     victoryTheme.play();
 }
 
@@ -347,7 +347,7 @@ const fimJogo = () => {
 const reset = () => {
     //parar som de vitória
     victoryTheme.pause();
-    victoryTheme.currentTime = 2;
+    victoryTheme.currentTime = 0;
     backgroundMusic.currentTime = 0;
     backgroundMusic.play();
 
