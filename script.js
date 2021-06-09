@@ -2,6 +2,7 @@
 //Declaração de variáveis globais
 const container = document.getElementById('container');
 const main = document.getElementsByTagName('main')[0];
+const vencedor = document.getElementsByClassName('vitoria')[0];
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
 
@@ -45,7 +46,28 @@ const criarDisco = () => {
         cheio.innerText = 'Coluna Cheia!';
         main.insertBefore(cheio, container);
         const cheia = document.getElementsByClassName('cheio')[0];
-        setTimeout(()=>{main.removeChild(cheia)}, 2000);
+        setTimeout(()=>{main.removeChild(cheia)}, 1000);
+    }
+
+    const vitoriaSol = () =>{
+        const vencedor = document.createElement('div');
+        vencedor.classList.add('vencedorSol');
+        vencedor.innerHTML = `No dia mais claro...<br><h1>Sol venceu!</h1>`;
+        main.appendChild(vencedor);
+    }
+
+    const vitoriaLua = () =>{
+        const vencedor = document.createElement('div');
+        vencedor.classList.add('vencedorLua');
+        vencedor.innerHTML = `Na noite mais densa...<br><h1>Lua venceu!</h1>`;
+        main.appendChild(vencedor);
+    }
+
+    const eclipse = () =>{
+        const vencedor = document.createElement('div');
+        vencedor.classList.add('empate');
+        vencedor.innerHTML = `Nem Sol, nem Lua...<br><h1>Eclipse!</h1>`;
+        main.appendChild(vencedor);
     }
 
 //Verificação de Turno
@@ -138,10 +160,12 @@ const verificarHorizontal = () => {
 
             if (discoA === discoB && discoB === discoC && discoC === discoD) {
                 if (discoA === 1) {
+                    vitoriaSol();
                     console.log('preto ganhou horizontal');
                     return 'preto'
 
                 } else if (discoA === 2) {
+                    vitoriaLua();
                     console.log('vermelho ganhou horizontal');
                     return 'vermelho'
                 }
@@ -163,9 +187,11 @@ const verificarVertical = () => {
 
                 if (discoA === discoB && discoB === discoC && discoC === discoD) {
                     if (discoA === 1) {
+                        vitoriaSol();
                         console.log('preto ganhou');
                         return 'preto'
                     } else if (discoA === 2) {
+                        vitoriaLua();
                         console.log('vermelho ganhou');
                         return 'vermelho'
                     }
@@ -187,9 +213,11 @@ const verificarVertical = () => {
 
                     if (discoA === discoB && discoB === discoC && discoC === discoD) {
                         if (discoA === 1) {
+                            vitoriaSol();
                             console.log('preto ganhou (diagonal)');
                             return 'preto'
                         } else if (discoA === 2) {
+                            vitoriaLua();
                             console.log('vermelho ganhou (diagonal)');
                             return 'vermelho'
                         }
@@ -208,9 +236,11 @@ const verificarVertical = () => {
 
                     if (discoA === discoB && discoB === discoC && discoC === discoD) {
                         if (discoA === 1) {
+                            vitoriaSol();
                             console.log('preto ganhou (diagonal)');
                             return 'preto'
                         } else if (discoA === 2) {
+                            vitoriaLua();
                             console.log('vermelho ganhou (diagonal)');
                             return 'vermelho'
                         }
@@ -232,6 +262,7 @@ const verificarEmpate = () => {
     });
 
     if (count === 7) {
+        eclipse();
         console.log('resultado: Empate');
     }
 }
