@@ -41,10 +41,50 @@ html, body, header, div, main, section{
 
 .cheio{
     position: absolute;
-    background-color: rgb(172, 199, 190);
+    background: linear-gradient(#ff6b27,#39006e);
+    color: white;
+    font-weight: bold;
     top: 20%;
     border-radius: 10px;
     padding: 10px;
-    left: 50%;
+    left: 30%;
     
+}
+
+.vencedorSol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+    width: 250px;
+    height: 150px;
+    border-radius: 15px;
+    background: linear-gradient(#ff7301,#ffc815);
+}
+
+.vencedorLua{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    width: 250px;
+    height: 150px;
+    border-radius: 15px;
+    background: linear-gradient(#0a0944,#939399);
+}
+
+.empate{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    width: 250px;
+    height: 150px;
+    border-radius: 10px;
+    background: linear-gradient(#ff3c01,#030233);
 }
