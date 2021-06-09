@@ -5,10 +5,35 @@ html, body, header, div, main, section{
 	box-sizing: border-box;
 }
 
-#container {
-    position: absolute;
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.players {
+    margin: 10px;
+    display: flex;
+    width: 280px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.container {
+    /* position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -87,4 +112,8 @@ html, body, header, div, main, section{
     height: 150px;
     border-radius: 10px;
     background: linear-gradient(#ff3c01,#030233);
+}
+
+.hidden {
+    display: none;
 }
