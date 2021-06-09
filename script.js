@@ -1,8 +1,11 @@
 
 //Declaração de variáveis globais
-const container = document.getElementById('container');
-const main = document.getElementsByTagName('main')[0];
+const container = document.querySelector('.container');
+// const main = document.getElementsByTagName('main')[0];
+const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
+const btnReset = document.getElementById('reset');
+
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
 
@@ -39,36 +42,37 @@ const criarDisco = () => {
 
 //Função de Verificação de Vitória
 
-    //Outras funções
-    const colunaCheia = () =>{
-        const cheio = document.createElement('div');
-        cheio.classList.add('cheio');
-        cheio.innerText = 'Coluna Cheia!';
-        main.insertBefore(cheio, container);
-        const cheia = document.getElementsByClassName('cheio')[0];
-        setTimeout(()=>{main.removeChild(cheia)}, 1000);
-    }
+//Outras funções
+const colunaCheia = () => {
+    const cheio = document.createElement('div');
+    cheio.classList.add('cheio');
+    cheio.innerText = 'Coluna Cheia!';
+    resultado.insertBefore(cheio, container);
+    const cheia = document.getElementsByClassName('cheio')[0];
+    setTimeout(() => { resultado.removeChild(cheia) }, 1000);
+}
 
-    const vitoriaSol = () =>{
-        const vencedor = document.createElement('div');
-        vencedor.classList.add('vencedorSol');
-        vencedor.innerHTML = `No dia mais claro...<br><h1>Sol venceu!</h1>`;
-        main.appendChild(vencedor);
-    }
+const vitoriaSol = () => {
+    const vencedor = document.createElement('div');
+    vencedor.classList.add('vencedorSol');
+    vencedor.innerHTML = `No dia mais claro...<br><h1>Sol venceu!</h1>`;
+    resultado.appendChild(vencedor);
+}
 
-    const vitoriaLua = () =>{
-        const vencedor = document.createElement('div');
-        vencedor.classList.add('vencedorLua');
-        vencedor.innerHTML = `Na noite mais densa...<br><h1>Lua venceu!</h1>`;
-        main.appendChild(vencedor);
-    }
+const vitoriaLua = () => {
+    const vencedor = document.createElement('div');
+    vencedor.classList.add('vencedorLua');
+    vencedor.innerHTML = `Na noite mais densa...<br><h1>Lua venceu!</h1>`;
+    resultado.appendChild(vencedor);
+}
 
-    const eclipse = () =>{
-        const vencedor = document.createElement('div');
-        vencedor.classList.add('empate');
-        vencedor.innerHTML = `Nem Sol, nem Lua...<br><h1>Eclipse!</h1>`;
-        main.appendChild(vencedor);
-    }
+const eclipse = () => {
+    const vencedor = document.createElement('div');
+    vencedor.classList.add('empate');
+    vencedor.innerHTML = `Nem Sol, nem Lua...<br><h1>Eclipse!</h1>`;
+    resultado.appendChild(vencedor);
+}
+
 
 //Verificação de Turno
 
@@ -110,11 +114,13 @@ function setColuna(e) {
     else if (turno === 2) {
         turno = 1
     }
-    verificarTabuleiro();
-    verificarVertical();
-    verificarDiagonal();
-    verificarHorizontal();
-    verificarEmpate();
+
+    if (fimJogo()) {
+        // console.log(fimJogo())
+        btnReset.classList.remove('hidden');
+        container.classList.add('hidden');
+        // container.classList.add('hidden');
+    };
 }
 
 //Atualizar array de arrays
@@ -143,7 +149,7 @@ const verificarTabuleiro = () => {
 
 
 //Verificações de Vitória
-    //Verificação Horizontal
+//Verificação Horizontal
 
 const verificarHorizontal = () => {
 
@@ -160,22 +166,24 @@ const verificarHorizontal = () => {
 
             if (discoA === discoB && discoB === discoC && discoC === discoD) {
                 if (discoA === 1) {
-                    vitoriaSol();
+                    // vitoriaSol();
                     console.log('preto ganhou horizontal');
                     return 'preto'
 
                 } else if (discoA === 2) {
-                    vitoriaLua();
+                    // vitoriaLua();
                     console.log('vermelho ganhou horizontal');
                     return 'vermelho'
                 }
             }
         }
     }
+
+    return null;
 }
 
 
-    //Verificação Vertical
+//Verificação Vertical
 const verificarVertical = () => {
     for (let i = 0; i < tabuleiro.length; i++) {
         if (tabuleiro[i].length > 3) {
@@ -187,11 +195,11 @@ const verificarVertical = () => {
 
                 if (discoA === discoB && discoB === discoC && discoC === discoD) {
                     if (discoA === 1) {
-                        vitoriaSol();
+                        // vitoriaSol();
                         console.log('preto ganhou');
                         return 'preto'
                     } else if (discoA === 2) {
-                        vitoriaLua();
+                        // vitoriaLua();
                         console.log('vermelho ganhou');
                         return 'vermelho'
                     }
@@ -199,55 +207,59 @@ const verificarVertical = () => {
             }
         }
     }
+
+    return null;
 }
 
-        //Verificação Diagonal
-        const verificarDiagonal = () => {
-            for(let j = 0; j < 3; j++){
-                for(let i = 0; i < 4; i++){
+//Verificação Diagonal
+const verificarDiagonal = () => {
+    for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 4; i++) {
 
-                let discoA = tabuleiro[i][j];
-                let discoB = tabuleiro[i + 1][j + 1];
-                let discoC = tabuleiro[i + 2][j + 2];
-                let discoD = tabuleiro[i + 3][j + 3];
+            let discoA = tabuleiro[i][j];
+            let discoB = tabuleiro[i + 1][j + 1];
+            let discoC = tabuleiro[i + 2][j + 2];
+            let discoD = tabuleiro[i + 3][j + 3];
 
-                    if (discoA === discoB && discoB === discoC && discoC === discoD) {
-                        if (discoA === 1) {
-                            vitoriaSol();
-                            console.log('preto ganhou (diagonal)');
-                            return 'preto'
-                        } else if (discoA === 2) {
-                            vitoriaLua();
-                            console.log('vermelho ganhou (diagonal)');
-                            return 'vermelho'
-                        }
-                    }
-                }
-            }          
-
-            for(let j = 0; j < 3; j++){
-
-                for(let i = 6; i > 2; i--){
-
-                let discoA = tabuleiro[i][j];
-                let discoB = tabuleiro[i - 1][j + 1];
-                let discoC = tabuleiro[i - 2][j + 2];
-                let discoD = tabuleiro[i - 3][j + 3];
-
-                    if (discoA === discoB && discoB === discoC && discoC === discoD) {
-                        if (discoA === 1) {
-                            vitoriaSol();
-                            console.log('preto ganhou (diagonal)');
-                            return 'preto'
-                        } else if (discoA === 2) {
-                            vitoriaLua();
-                            console.log('vermelho ganhou (diagonal)');
-                            return 'vermelho'
-                        }
-                    }
+            if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                if (discoA === 1) {
+                    // vitoriaSol();
+                    console.log('preto ganhou (diagonal)');
+                    return 'preto'
+                } else if (discoA === 2) {
+                    // vitoriaLua();
+                    console.log('vermelho ganhou (diagonal)');
+                    return 'vermelho'
                 }
             }
         }
+    }
+
+    for (let j = 0; j < 3; j++) {
+
+        for (let i = 6; i > 2; i--) {
+
+            let discoA = tabuleiro[i][j];
+            let discoB = tabuleiro[i - 1][j + 1];
+            let discoC = tabuleiro[i - 2][j + 2];
+            let discoD = tabuleiro[i - 3][j + 3];
+
+            if (discoA === discoB && discoB === discoC && discoC === discoD) {
+                if (discoA === 1) {
+                    // vitoriaSol();
+                    console.log('preto ganhou (diagonal)');
+                    return 'preto'
+                } else if (discoA === 2) {
+                    // vitoriaLua();
+                    console.log('vermelho ganhou (diagonal)');
+                    return 'vermelho'
+                }
+            }
+        }
+    }
+
+    return null;
+}
 
 // verificação de empate 
 const verificarEmpate = () => {
@@ -262,10 +274,56 @@ const verificarEmpate = () => {
     });
 
     if (count === 7) {
-        eclipse();
+        // eclipse();
         console.log('resultado: Empate');
     }
 }
+
+const fimJogo = () => {
+    verificarTabuleiro();
+
+    let vencedorVertical = verificarVertical();
+    let vencedorHorizontal = verificarHorizontal();
+    let vencedorDiagonal = verificarDiagonal();
+    let empate = verificarEmpate();
+
+    if (vencedorVertical === null && vencedorHorizontal === null && vencedorDiagonal === null && empate === null) {
+        return false;
+    }
+
+    if (vencedorVertical === 'preto' || vencedorHorizontal === 'preto' || vencedorDiagonal === 'preto') {
+        vitoriaSol();
+        return true;
+    }
+
+    if (vencedorVertical === 'vermelho' || vencedorHorizontal === 'vermelho' || vencedorDiagonal === 'vermelho') {
+        vitoriaLua();
+        return true;
+    }
+
+    if (empate === 'empate') {
+        eclipse();
+        return true;
+    }
+}
+
+const reset = () => {
+    btnReset.classList.add('hidden');
+    resultado.innerHTML = '';
+
+    turno = 1;
+    tabuleiro = [[], [], [], [], [], [], []];
+
+    const quadrados = document.querySelectorAll('.quadrados');
+
+    quadrados.forEach(quadrado => quadrado.innerHTML = '');
+
+    container.style.display = 'flex';
+}
+
+btnReset.addEventListener('click', reset);
+
+
 
 /*
 
