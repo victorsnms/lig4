@@ -54,7 +54,6 @@ const criarDisco = () => {
         vencedor.classList.add('vencedorSol');
         vencedor.innerHTML = `No dia mais claro...<br><h1>Sol venceu!</h1>`;
         main.appendChild(vencedor);
-        colunas.forEach((item) =>{item.removeEventListener('click', setColuna)});
     }
 
     const vitoriaLua = () =>{
@@ -62,7 +61,6 @@ const criarDisco = () => {
         vencedor.classList.add('vencedorLua');
         vencedor.innerHTML = `Na noite mais densa...<br><h1>Lua venceu!</h1>`;
         main.appendChild(vencedor);
-        colunas.forEach((item) =>{item.removeEventListener('click', setColuna)});
     }
 
     const eclipse = () =>{
@@ -70,7 +68,6 @@ const criarDisco = () => {
         vencedor.classList.add('empate');
         vencedor.innerHTML = `Nem Sol, nem Lua...<br><h1>Eclipse!</h1>`;
         main.appendChild(vencedor);
-        colunas.forEach((item) =>{item.removeEventListener('click', setColuna)});
     }
 
 //Verificação de Turno
