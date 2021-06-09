@@ -2,6 +2,7 @@
 //Declaração de variáveis globais
 const container = document.querySelector('.container');
 // const main = document.getElementsByTagName('main')[0];
+const turnoJogador = document.getElementById('currentPlayer');
 const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
 const btnReset = document.getElementById('reset');
@@ -46,7 +47,7 @@ const criarDisco = () => {
 const colunaCheia = () => {
     const cheio = document.createElement('div');
     cheio.classList.add('cheio');
-    cheio.innerText = 'Coluna Cheia!';
+    cheio.innerText = 'Seu disco foi capturado por um buraco negro';
     // main.insertBefore(cheio, container);
     resultado.appendChild(cheio);
     const cheia = document.getElementsByClassName('cheio')[0];
@@ -76,8 +77,11 @@ const eclipse = () => {
 
 
 //Verificação de Turno
-
-
+const currentPlayer = () => {
+    let atual = criarDisco();
+    turnoJogador.appendChild(atual);
+} 
+currentPlayer();
 
 //Função do Handler
 colunas.forEach((item) => {
@@ -93,7 +97,7 @@ function setColuna(e) {
 
     if (ultimoQuadrado.childElementCount > 0) {
         colunaCheia();
-        return
+        return;
     }
 
     let quadradoEscolhido
@@ -121,7 +125,10 @@ function setColuna(e) {
         btnReset.classList.remove('hidden');
         container.classList.add('hidden');
         // container.classList.add('hidden');
+        return;
     };
+
+    currentPlayer();
 }
 
 //Atualizar array de arrays
@@ -280,6 +287,7 @@ const verificarEmpate = () => {
 }
 
 const fimJogo = () => {
+    turnoJogador.innerHTML = '';
     verificarTabuleiro();
 
     let vencedorVertical = verificarVertical();
@@ -318,7 +326,9 @@ const reset = () => {
 
     quadrados.forEach(quadrado => quadrado.innerHTML = '');
 
-    container.classList.remove('hidden')
+    container.classList.remove('hidden');
+
+    currentPlayer();
 }
 
 btnReset.addEventListener('click', reset);
