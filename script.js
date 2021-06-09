@@ -6,7 +6,14 @@ const turnoJogador = document.getElementById('currentPlayer');
 const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
 const btnReset = document.getElementById('reset');
+const btnStart = document.getElementById('start');
+const sfx = document.getElementById('sfx');
+const victoryTheme = document.getElementById('victoryTheme');
+const backgroundMusic = document.getElementById('soundtrack');
 btnReset.classList.add('botao')
+sfx.volume = 0.25;
+sfx.playbackRate = 1.5;
+backgroundMusic.loop = true;
 
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
@@ -45,6 +52,19 @@ const criarDisco = () => {
 //Função de Verificação de Vitória
 
 //Outras funções
+
+btnStart.addEventListener('click', () => {
+    backgroundMusic.play();
+})
+
+const changeMusic = () =>{
+    //parar musica de background
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    victoryTheme.currentTime = 4.8;
+    victoryTheme.play();
+}
+
 const colunaCheia = () => {
     const cheio = document.createElement('div');
     cheio.classList.add('cheio');
@@ -90,6 +110,10 @@ colunas.forEach((item) => {
 })
 
 function setColuna(e) {
+    sfx.pause()
+    sfx.currentTime = 0;
+    sfx.play();
+
     const colunaEscolhida = e.currentTarget;
 
     const quadrados = colunaEscolhida.querySelectorAll('.quadrados');
@@ -288,6 +312,7 @@ const verificarEmpate = () => {
 }
 
 const fimJogo = () => {
+    
     turnoJogador.innerHTML = '';
     verificarTabuleiro();
 
@@ -302,21 +327,30 @@ const fimJogo = () => {
 
     if (vencedorVertical === 'preto' || vencedorHorizontal === 'preto' || vencedorDiagonal === 'preto') {
         vitoriaSol();
+        changeMusic();
         return true;
     }
 
     if (vencedorVertical === 'vermelho' || vencedorHorizontal === 'vermelho' || vencedorDiagonal === 'vermelho') {
         vitoriaLua();
+        changeMusic();
         return true;
     }
 
     if (empate === 'empate') {
         eclipse();
+        changeMusic();
         return true;
     }
 }
 
 const reset = () => {
+    //parar som de vitória
+    victoryTheme.pause();
+    victoryTheme.currentTime = 2;
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play();
+
     btnReset.classList.add('hidden');
     resultado.innerHTML = '';
 
