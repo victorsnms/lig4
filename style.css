@@ -141,3 +141,14 @@ main {
 .hidden {
     display: none;
 }
+
+.sunSE{
+    background-image: url(assets/images/sunSE.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.moonSE{
+    background-image: url(assets/images/moonSE.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+}

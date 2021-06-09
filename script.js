@@ -31,10 +31,10 @@ const criarDisco = () => {
     const disco = document.createElement('div');
     disco.classList.add('disco');
     if (turno === 1) {
-        disco.classList.add('preto');
+        disco.classList.add('sunSE');
         disco.dataset.cor = 'preto'
     } else if (turno === 2) {
-        disco.classList.add('vermelho');
+        disco.classList.add('moonSE');
         disco.dataset.cor = 'vermelho'
     }
     return disco
