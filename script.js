@@ -6,6 +6,7 @@ const turnoJogador = document.getElementById('currentPlayer');
 const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
 const btnReset = document.getElementById('reset');
+btnReset.classList.add('botao')
 
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
