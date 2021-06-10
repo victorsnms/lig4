@@ -348,7 +348,7 @@ main {
     position:absolute;
     top: 45%;
     left: -64%;
-    
+    cursor:pointer;
 }
 
 .vertical{

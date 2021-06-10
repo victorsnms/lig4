@@ -22,9 +22,13 @@ victoryTheme.volume = 0.7;
 sfx.playbackRate = 1.5;
 backgroundMusic.loop = true;
 
-//fazer isso ficar automático;
-backgroundMusic.volume = volumeControl.value / 100
-victoryTheme.volume = volumeControl.value / 100
+//checar volume
+setInterval(function(){  
+    backgroundMusic.volume = volumeControl.value / 100;
+    victoryTheme.volume = volumeControl.value / 100;
+    sfx.volume = volumeControl.value / 300;
+}, 500);
+
 
 let modoMusica = true;
 let turno = 1;
