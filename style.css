@@ -14,7 +14,7 @@
 }
 
 :root{
-    --snake-color: red;
+    --snake-color: white;
 }
 
 html, body, header, div, main, section{
@@ -32,6 +32,29 @@ header{
     width: 65px;
     height: 95px;
 }
+
+body{
+    background-image: url(./assets/images/backgroundNuvens.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.body-desktop{
+    background-size: cover;
+}
+
+.castelo{
+    background-image: url(./assets/images/tabuleiroMobile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 320px;
+    height:350px;
+    /* z-index: -1; */
+    position:relative;
+}
+
+
 
 h1{
     color: white;
@@ -87,9 +110,16 @@ main {
     align-items: center;
     width: 100px;
     height: 100%;
-    border: 1px solid black;
     position:relative;
     overflow: hidden;
+}
+.player{
+    font-family: "New Impact";
+    color:white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
+    padding: 5px 10px;
+    width:120px;
 }
 
 .player span{
@@ -97,14 +127,41 @@ main {
     display:block;
 }
 
+.dia{
+    animation: virardia 2s forwards;
+}
+
+@keyframes virardia {
+    0%{
+        background-image:url(./assets/images/backgroundNuvens.jpg);
+    }
+    100%{
+        background-image:url(./assets/images/vitoriaSol.jpg);
+    }
+
+}
+.noite{
+    animation: virarnoite 2s forwards;
+}
+
+@keyframes virarnoite {
+    0%{
+        background-image:url(./assets/images/backgroundNuvens.jpg);
+    }
+    100%{
+        background-image:url(./assets/images/vitoriaLua.jpg);
+    }
+}
+
 .container {
-    /* position: absolute;
-    top: 50%;
-    transform: translateY(-50%); */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    background-color: black;
+    background-color: transparent;
 }
 
 .colunas {
@@ -118,8 +175,8 @@ main {
 }
 
 .quadrados {
-    width: 40px;
-    height: 40px;
+    width: 29px;
+    height: 29px;
     /* border: 1px solid #000; */
     box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.15) inset;
 }
@@ -130,8 +187,8 @@ main {
 }
 
 .disco {
-    width: 40px;
-    height: 40px;
+    width: 29px;
+    height: 29px;
     border-radius: 50%;
 }
 
@@ -164,7 +221,7 @@ main {
     width: 250px;
     height: 150px;
     border-radius: 15px;
-    background: linear-gradient(#ff7301,#ffc815);
+    /* background: linear-gradient(#ff7301,#ffc815); */
 }
 
 .vencedorLua{
@@ -177,7 +234,7 @@ main {
     width: 250px;
     height: 150px;
     border-radius: 15px;
-    background: linear-gradient(#0a0944,#939399);
+    /* background: linear-gradient(#0a0944,#939399); */
 }
 
 .empate{
@@ -190,7 +247,7 @@ main {
     width: 250px;
     height: 150px;
     border-radius: 10px;
-    background: linear-gradient(#ff3c01,#030233);
+    /* background: linear-gradient(#ff3c01,#030233); */
 }
 
 .botao{
