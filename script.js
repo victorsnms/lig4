@@ -103,21 +103,21 @@ const colunaCheia = () => {
 const vitoriaSol = () => {
     const vencedor = document.createElement('div');
     vencedor.classList.add('vencedorSol');
-    vencedor.innerHTML = `No dia mais claro...<br><h1>Sol venceu!</h1>`;
+    vencedor.innerHTML = `<h3>No dia mais claro...</h3><br><h2>o Sol venceu!</h2>`;
     resultado.appendChild(vencedor);
 }
 
 const vitoriaLua = () => {
     const vencedor = document.createElement('div');
     vencedor.classList.add('vencedorLua');
-    vencedor.innerHTML = `Na noite mais densa...<br><h1>Lua venceu!</h1>`;
+    vencedor.innerHTML = `<h3>Na noite mais densa...</h3><br><h2>a Lua venceu!</h2>`;
     resultado.appendChild(vencedor);
 }
 
 const eclipse = () => {
     const vencedor = document.createElement('div');
     vencedor.classList.add('empate');
-    vencedor.innerHTML = `Nem Sol, nem Lua...<br><h1>Eclipse!</h1>`;
+    vencedor.innerHTML = `<h3>Nem Sol, nem Lua...</h3><br><h2>Eclipse!</h2>`;
     resultado.appendChild(vencedor);
 }
 

@@ -41,6 +41,22 @@ h1{
     font-size: 80px;
 }
 
+h2{
+    color: white;
+    margin: 0;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgba(27, 27, 27, 0.753);
+    font-size: 40px;
+}
+
+h3{
+    color: white;
+    margin: 0;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(27, 27, 27, 0.432);
+    font-size: 20px;
+}
+
 .gameTitle{
     margin-bottom: 20px;
     display: flex;
