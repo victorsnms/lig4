@@ -2,6 +2,8 @@
 //Declaração de variáveis globais
 const container = document.querySelector('.container');
 // const main = document.getElementsByTagName('main')[0];
+const player1 = document.getElementById('player1');
+const player2 = document.getElementById('player2');
 const turnoJogador = document.getElementById('currentPlayer');
 const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
@@ -121,6 +123,13 @@ const eclipse = () => {
 const currentPlayer = () => {
     let atual = criarDisco();
     turnoJogador.appendChild(atual);
+    if(turno === 1){
+        player1.classList.add('playerturn')
+        player2.classList.remove('playerturn')
+    } else if (turno === 2){
+        player1.classList.remove('playerturn')
+        player2.classList.add('playerturn')
+    }
 } 
 currentPlayer();
 
