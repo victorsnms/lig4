@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "New Impact";
+    src: local(Raleway), url(./assets/fonts/impact/impact.ttf);
+}
+
+@font-face {
+    font-family: "New Impacted";
+    src: local(Raleway), url(./assets/fonts/impact/Impacted.ttf);
+}
+
+@font-face {
+    font-family: "New Unicode Impact";
+    src: local(Raleway), url(./assets/fonts/impact/unicode.impact.ttf);
+}
+
 :root{
     --snake-color: red;
 }
@@ -7,6 +22,31 @@ html, body, header, div, main, section{
 	padding: 0;
 	border: none;
 	box-sizing: border-box;
+}
+
+header{
+    font-family: "New Impacted";
+}
+
+.headerIcon{
+    width: 65px;
+    height: 95px;
+}
+
+h1{
+    color: white;
+    margin: 0;
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: #000;
+    font-size: 80px;
+}
+
+.gameTitle{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 
 main {
