@@ -1,7 +1,7 @@
 
 //Declaração de variáveis globais
 const container = document.querySelector('.container');
-// const main = document.getElementsByTagName('main')[0];
+const main = document.getElementsByTagName('main')[0];
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
 const turnoJogador = document.getElementById('currentPlayer');
@@ -58,6 +58,9 @@ const criarDisco = () => {
 //Outras funções
 
 btnStart.addEventListener('click', () => {
+    btnStart.classList.add('hidden');
+    main.classList.remove('hidden');
+    btnMute.classList.remove('hidden');
     backgroundMusic.play();
 })
 

@@ -52,6 +52,7 @@ main {
 }
 
 .colunas {
+    cursor: pointer;
     display: flex;
     flex-flow: column-reverse nowrap;
 }
@@ -160,10 +161,6 @@ main {
     box-shadow: 2px 2px 3px 1px black;
 }
 
-.hidden {
-    display: none;
-}
-
 .sunSE{
     background-image: url(assets/images/sunSE.gif);
     background-size: contain;
@@ -251,5 +248,29 @@ main {
     50%,100%{
         bottom:100%;
     }
+}
+
+.central {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#start:active {
+    cursor: pointer;
+    transform: translate(-45%, -40%);
+    box-shadow: 2px 2px 3px 1px black;
+}
+
+#mute {
+    cursor: pointer;
+    position: absolute;
+    top: 3%;
+    left: 2%;
+}
+
+.hidden {
+    display: none;
 }
 
