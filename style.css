@@ -285,6 +285,10 @@ main {
     background-repeat: no-repeat;
 }
 
+#currentPlayer > div {
+    display: none;
+}
+
 /*efeito do jogador*/
 .playerturn span:nth-child(1){
     top: 0;
@@ -385,5 +389,14 @@ main {
 
 .hidden {
     display: none;
+}
+
+@media screen and (min-width: 490px) {
+    #currentPlayer > div {
+        display: block;
+        margin: 40px;
+        width: 260px;
+        height: 260px;
+    }
 }
 
