@@ -7,6 +7,7 @@ const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
 const btnReset = document.getElementById('reset');
 const btnStart = document.getElementById('start');
+const btnMute = document.getElementById('mute');
 const sfx = document.getElementById('sfx');
 const victoryTheme = document.getElementById('victoryTheme');
 const backgroundMusic = document.getElementById('soundtrack');
@@ -15,6 +16,7 @@ sfx.volume = 0.25;
 sfx.playbackRate = 1.5;
 backgroundMusic.loop = true;
 
+let modoMusica = true;
 let turno = 1;
 let tabuleiro = [[], [], [], [], [], [], []];
 
@@ -55,6 +57,24 @@ const criarDisco = () => {
 
 btnStart.addEventListener('click', () => {
     backgroundMusic.play();
+})
+
+btnMute.addEventListener('click', () => {
+    if (modoMusica === true){
+        backgroundMusic.muted = true;
+        victoryTheme.muted = true;
+        sfx.muted = true;
+        modoMusica = false;
+        btnMute.src = "./assets/images/mute.png"
+    } else if (modoMusica === false){
+        backgroundMusic.muted = false;
+        victoryTheme.muted = false;
+        sfx.muted = false;
+        modoMusica = true;
+        btnMute.src = "./assets/images/volume.png"
+    }
+    
+    
 })
 
 const changeMusic = () =>{
