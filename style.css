@@ -438,4 +438,30 @@ main {
         top: 63%;
         left: -91%;
     }
+
+    .castelo{
+        background-image: url(./assets/images/tabuleiroPc.png);
+        width: 650px;
+        height: 480px;
+    }
+
+    .quadrados{
+        width: 40px;
+        height: 40px;
+    }
+
+    .disco{
+        width: 40px;
+        height: 40px;
+    }
+
+    .players{
+        width: 600px;
+        position: absolute;
+        top: 10%;
+    }
+
+    main{
+        position: relative;
+    }
 }
