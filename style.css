@@ -160,10 +160,6 @@ main {
     box-shadow: 2px 2px 3px 1px black;
 }
 
-.hidden {
-    display: none;
-}
-
 .sunSE{
     background-image: url(assets/images/sunSE.gif);
     background-size: contain;
@@ -251,5 +247,9 @@ main {
     50%,100%{
         bottom:100%;
     }
+}
+
+.hidden {
+    display: none;
 }
 
