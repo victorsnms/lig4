@@ -5,6 +5,7 @@ const main = document.getElementsByTagName('main')[0];
 const castelo = document.getElementsByClassName('castelo')[0];
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
+const vencedorBox = document.getElementById('currentPlayer');
 const players = document.getElementsByClassName('players')[0];
 const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
@@ -172,21 +173,22 @@ function setColuna(e) {
 
     quadradoEscolhido.appendChild(discoCriado);
 
-    if (turno === 1) {
-        turno = 2;
-    }
-    else if (turno === 2) {
-        turno = 1
-    }
-
     if (fimJogo()) {
         // console.log(fimJogo())
+        gifVencedor(vencedorBox)
         players.classList.add("hidden");
         btnReset.classList.remove('hidden');
         castelo.classList.add('hidden');
         // container.classList.add('hidden');
         return;
     };
+
+    if (turno === 1) {
+        turno = 2;
+    }
+    else if (turno === 2) {
+        turno = 1
+    }
 
     currentPlayer();
 }
@@ -392,6 +394,7 @@ const reset = () => {
 
     btnReset.classList.add('hidden');
     resultado.innerHTML = '';
+    vencedorBox.innerHTML = '';
 
     turno = 1;
     tabuleiro = [[], [], [], [], [], [], []];
@@ -407,7 +410,10 @@ const reset = () => {
 
 btnReset.addEventListener('click', reset);
 
-
+const gifVencedor = (parent) => {
+    let vencedor = criarDisco();
+    parent.appendChild(vencedor);
+}
 
 /*
 
