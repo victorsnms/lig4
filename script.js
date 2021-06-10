@@ -12,13 +12,25 @@ const vencedor = document.getElementsByClassName('vitoria')[0];
 const btnReset = document.getElementById('reset');
 const btnStart = document.getElementById('start');
 const btnMute = document.getElementById('mute');
+const soundControl = document.getElementById('sound-control');
+const volumeControl = document.getElementById('volume-control');
 const sfx = document.getElementById('sfx');
 const victoryTheme = document.getElementById('victoryTheme');
 const backgroundMusic = document.getElementById('soundtrack');
 btnReset.classList.add('botao')
 sfx.volume = 0.25;
+backgroundMusic.volume = 0.7;
+victoryTheme.volume = 0.7;
 sfx.playbackRate = 1.5;
 backgroundMusic.loop = true;
+
+//checar volume
+setInterval(function(){  
+    backgroundMusic.volume = volumeControl.value / 100;
+    victoryTheme.volume = volumeControl.value / 100;
+    sfx.volume = volumeControl.value / 300;
+}, 500);
+
 
 let modoMusica = true;
 let turno = 1;
@@ -63,6 +75,7 @@ btnStart.addEventListener('click', () => {
     btnStart.classList.add('hidden');
     main.classList.remove('hidden');
     btnMute.classList.remove('hidden');
+    soundControl.classList.remove('hidden');
     backgroundMusic.play();
 })
 
