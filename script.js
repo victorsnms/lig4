@@ -2,9 +2,10 @@
 //Declaração de variáveis globais
 const container = document.querySelector('.container');
 const main = document.getElementsByTagName('main')[0];
+const castelo = document.getElementsByClassName('castelo')[0];
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
-const turnoJogador = document.getElementById('currentPlayer');
+const players = document.getElementsByClassName('players')[0];
 const resultado = document.getElementById('resultado');
 const vencedor = document.getElementsByClassName('vitoria')[0];
 const btnReset = document.getElementById('reset');
@@ -124,8 +125,6 @@ const eclipse = () => {
 
 //Verificação de Turno
 const currentPlayer = () => {
-    let atual = criarDisco();
-    turnoJogador.appendChild(atual);
     if(turno === 1){
         player1.classList.add('playerturn')
         player2.classList.remove('playerturn')
@@ -141,7 +140,10 @@ colunas.forEach((item) => {
     item.addEventListener('click', setColuna)
 })
 
+// container.addEventListener('click', () => console.log("clicou"))
+
 function setColuna(e) {
+    // console.log("clicou")
     sfx.pause()
     sfx.currentTime = 0;
     sfx.play();
@@ -179,8 +181,9 @@ function setColuna(e) {
 
     if (fimJogo()) {
         // console.log(fimJogo())
+        players.classList.add("hidden");
         btnReset.classList.remove('hidden');
-        container.classList.add('hidden');
+        castelo.classList.add('hidden');
         // container.classList.add('hidden');
         return;
     };
@@ -345,7 +348,6 @@ const verificarEmpate = () => {
 
 const fimJogo = () => {
     
-    turnoJogador.innerHTML = '';
     verificarTabuleiro();
 
     let vencedorVertical = verificarVertical();
@@ -359,12 +361,14 @@ const fimJogo = () => {
 
     if (vencedorVertical === 'preto' || vencedorHorizontal === 'preto' || vencedorDiagonal === 'preto') {
         vitoriaSol();
+        document.body.classList.add("dia");
         changeMusic();
         return true;
     }
 
     if (vencedorVertical === 'vermelho' || vencedorHorizontal === 'vermelho' || vencedorDiagonal === 'vermelho') {
         vitoriaLua();
+        document.body.classList.add("noite");
         changeMusic();
         return true;
     }
@@ -383,6 +387,9 @@ const reset = () => {
     backgroundMusic.currentTime = 0;
     backgroundMusic.play();
 
+    document.body.classList.remove("dia", "noite");
+    players.classList.remove("hidden");
+
     btnReset.classList.add('hidden');
     resultado.innerHTML = '';
 
@@ -393,7 +400,7 @@ const reset = () => {
 
     quadrados.forEach(quadrado => quadrado.innerHTML = '');
 
-    container.classList.remove('hidden');
+    castelo.classList.remove('hidden');
 
     currentPlayer();
 }
