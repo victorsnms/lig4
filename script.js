@@ -188,7 +188,6 @@ function setColuna(e) {
 
     if (fimJogo()) {
         // console.log(fimJogo())
-        gifVencedor(vencedorBox)
         players.classList.add("hidden");
         btnReset.classList.remove('hidden');
         castelo.classList.add('hidden');
@@ -378,6 +377,7 @@ const fimJogo = () => {
         vitoriaSol();
         document.body.classList.add("dia");
         changeMusic();
+        gifVencedor(vencedorBox);
         return true;
     }
 
@@ -385,6 +385,7 @@ const fimJogo = () => {
         vitoriaLua();
         document.body.classList.add("noite");
         changeMusic();
+        gifVencedor(vencedorBox);
         return true;
     }
 

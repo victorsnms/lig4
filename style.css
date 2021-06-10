@@ -25,17 +25,16 @@ html, body, header, div, main, section{
 }
 
 header{
+    padding-top:20px;
     font-family: "New Impacted";
 }
 
 .headerIcon{
-    width: 65px;
     height: 95px;
 }
 
 body{
     background-image: url(./assets/images/backgroundNuvens.jpg);
-    background-repeat: no-repeat;
     background-position: top center;
 }
 
@@ -81,7 +80,6 @@ h3{
 }
 
 .gameTitle{
-    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -93,6 +91,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 50px;
 }
 
 .players {
@@ -424,7 +423,7 @@ main {
 @media screen and (min-width: 490px) {
     #currentPlayer > div {
         display: block;
-        margin: 40px;
+        margin: 20px;
         width: 260px;
         height: 260px;
     }
@@ -463,5 +462,13 @@ main {
 
     main{
         position: relative;
+    }
+
+    h1{
+        font-size:110px;
+    }
+
+    .headerIcon{
+        height: 130px;
     }
 }
