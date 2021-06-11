@@ -108,7 +108,7 @@ const changeMusic = () =>{
 const colunaCheia = () => {
     const cheio = document.createElement('div');
     cheio.classList.add('cheio');
-    cheio.innerText = 'Seu disco foi capturado por um buraco negro';
+    cheio.innerText = 'Seu astro foi capturado por um buraco negro';
     // main.insertBefore(cheio, container);
     resultado.appendChild(cheio);
     const cheia = document.getElementsByClassName('cheio')[0];
@@ -157,7 +157,6 @@ colunas.forEach((item) => {
 // container.addEventListener('click', () => console.log("clicou"))
 
 function setColuna(e) {
-    // console.log("clicou")
     sfx.pause()
     sfx.currentTime = 0;
     sfx.play();
@@ -248,13 +247,9 @@ const verificarHorizontal = () => {
 
             if (discoA === discoB && discoB === discoC && discoC === discoD) {
                 if (discoA === 1) {
-                    // vitoriaSol();
-                    console.log('preto ganhou horizontal');
                     return 'preto'
 
                 } else if (discoA === 2) {
-                    // vitoriaLua();
-                    console.log('vermelho ganhou horizontal');
                     return 'vermelho'
                 }
             }
@@ -277,12 +272,8 @@ const verificarVertical = () => {
 
                 if (discoA === discoB && discoB === discoC && discoC === discoD) {
                     if (discoA === 1) {
-                        // vitoriaSol();
-                        console.log('preto ganhou');
                         return 'preto'
                     } else if (discoA === 2) {
-                        // vitoriaLua();
-                        console.log('vermelho ganhou');
                         return 'vermelho'
                     }
                 }
@@ -305,12 +296,8 @@ const verificarDiagonal = () => {
 
             if (discoA === discoB && discoB === discoC && discoC === discoD) {
                 if (discoA === 1) {
-                    // vitoriaSol();
-                    console.log('preto ganhou (diagonal)');
                     return 'preto'
                 } else if (discoA === 2) {
-                    // vitoriaLua();
-                    console.log('vermelho ganhou (diagonal)');
                     return 'vermelho'
                 }
             }
@@ -328,12 +315,8 @@ const verificarDiagonal = () => {
 
             if (discoA === discoB && discoB === discoC && discoC === discoD) {
                 if (discoA === 1) {
-                    // vitoriaSol();
-                    console.log('preto ganhou (diagonal)');
                     return 'preto'
                 } else if (discoA === 2) {
-                    // vitoriaLua();
-                    console.log('vermelho ganhou (diagonal)');
                     return 'vermelho'
                 }
             }
